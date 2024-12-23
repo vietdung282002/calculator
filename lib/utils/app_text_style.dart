@@ -6,16 +6,11 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle subtitle = const TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
+  static TextStyle result = const TextStyle(
+    fontSize: 40,
   );
 
-  static TextStyle body = const TextStyle(
-    fontSize: 16,
-  );
-
-  static TextStyle caption = const TextStyle(
-    fontSize: 12,
+  static TextStyle operator = const TextStyle(
+    fontSize: 96,
   );
 }

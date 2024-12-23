@@ -19,7 +19,7 @@ class ButtonData {
   static List<List<CalculatorButton>> buttons = [
     [
       CalculatorButton("C", ButtonType.function),
-      CalculatorButton("UNION", ButtonType.function),
+      CalculatorButton("NEG", ButtonType.function),
       CalculatorButton("%", ButtonType.function),
       CalculatorButton("÷", ButtonType.operation),
     ],
@@ -65,8 +65,6 @@ class ButtonData {
         } else {
           return AppColor.darkNumberButton;
         }
-      default:
-        return Colors.white;
     }
   }
 
@@ -77,31 +75,61 @@ class ButtonData {
           button.label,
           style: AppTextStyle.buttonTextStyle,
         );
-      case "UNION":
+      case "NEG":
         if (mode == ThemeMode.light) {
-          return Image.asset("assets/light_union.png");
+          return Image.asset(
+            "assets/light_neg.png",
+          );
         } else {
-          return Image.asset("assets/dark_union.png");
+          return Image.asset(
+            "assets/dark_neg.png",
+          );
         }
       case "%":
-        return const Icon(Icons.percent_outlined);
+        if (mode == ThemeMode.light) {
+          return Image.asset(
+            "assets/light_percent.png",
+          );
+        } else {
+          return Image.asset(
+            "assets/dark_percent.png",
+          );
+        }
       case "÷":
-        return Image.asset("assets/divide.png");
+        return Image.asset(
+          "assets/divide.png",
+        );
       case "x":
-        return Image.asset("assets/multiply.png");
+        return Image.asset(
+          "assets/multiply.png",
+        );
       case "-":
-        return Image.asset("assets/minus.png");
+        return Image.asset(
+          "assets/minus.png",
+        );
       case "+":
-        return Image.asset("assets/plus.png");
+        return Image.asset(
+          "assets/plus.png",
+        );
       case ".":
         return Text(
           button.label,
           style: AppTextStyle.buttonTextStyle,
         );
       case "DEL":
-        return const Icon(Icons.backspace_outlined);
+        if (mode == ThemeMode.light) {
+          return Image.asset(
+            "assets/light_backspace.png",
+          );
+        } else {
+          return Image.asset(
+            "assets/dark_backspace.png",
+          );
+        }
       case "=":
-        return Image.asset("assets/equal.png");
+        return Image.asset(
+          "assets/equal.png",
+        );
       default:
         return Text(
           button.label,

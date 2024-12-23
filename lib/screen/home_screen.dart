@@ -1,4 +1,5 @@
 import 'package:calculator/screen/home_provider.dart';
+import 'package:calculator/utils/app_text_style.dart';
 import 'package:calculator/widget/button_widget.dart';
 import 'package:calculator/theme_provider.dart';
 import 'package:calculator/widget/toggle_widget.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -43,8 +44,8 @@ class HomeScreen extends StatelessWidget {
                 Consumer<ThemeProvider>(
                   builder: (context, themeProvider, child) {
                     return ButtonWidget(
-                      width: size.width / 4,
-                      height: size.height / 10,
+                      width: (size.width - 40) / 4,
+                      height: (size.height - 40) / 10,
                       backgroundColor: ButtonData.getButtonColor(
                           ButtonData.buttons[i][j], themeProvider.mode),
                       onPressed: () {
@@ -52,7 +53,9 @@ class HomeScreen extends StatelessWidget {
                             .updateOperation(ButtonData.buttons[i][j].label);
                       },
                       child: ButtonData.getButtonChild(
-                          ButtonData.buttons[i][j], themeProvider.mode),
+                        ButtonData.buttons[i][j],
+                        themeProvider.mode,
+                      ),
                     );
                   },
                 ),
@@ -81,9 +84,7 @@ class HomeScreen extends StatelessWidget {
                         operation,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 38,
-                        ),
+                        style: AppTextStyle.result,
                         textAlign: TextAlign.right,
                       ),
                     );
@@ -100,9 +101,7 @@ class HomeScreen extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       result,
-                      style: const TextStyle(
-                        fontSize: 60,
-                      ),
+                      style: AppTextStyle.operator,
                     );
                   },
                 ),
