@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ThemeProvider extends ChangeNotifier {
   ThemeMode _mode;
   ThemeMode get mode => _mode;
+
   ThemeProvider({
     ThemeMode mode = ThemeMode.light,
   }) : _mode = mode;

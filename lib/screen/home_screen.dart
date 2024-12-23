@@ -15,14 +15,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ToggleWidget(),
-              ),
+              const ToggleWidget(),
               outPutSection(),
               inPutSection(context),
             ],
@@ -84,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                         operation,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyle.result,
+                        style: AppTextStyle.operator,
                         textAlign: TextAlign.right,
                       ),
                     );
@@ -101,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       result,
-                      style: AppTextStyle.operator,
+                      style: AppTextStyle.result,
                     );
                   },
                 ),

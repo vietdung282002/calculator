@@ -26,14 +26,13 @@ class ButtonWidget extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ButtonStyle(
-            // foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
             backgroundColor: backgroundColor != null
                 ? WidgetStateProperty.all<Color>(backgroundColor!)
                 : null,
             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(16),
+                  Radius.circular(24),
                 ),
               ),
             ),

@@ -7,10 +7,11 @@ class AppTextStyle {
   );
 
   static TextStyle result = const TextStyle(
-    fontSize: 40,
+    fontSize: 85,
+    fontWeight: FontWeight.w100,
   );
 
   static TextStyle operator = const TextStyle(
-    fontSize: 96,
+    fontSize: 40,
   );
 }
