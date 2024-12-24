@@ -77,16 +77,14 @@ class HomeScreen extends StatelessWidget {
                   builder: (context, operation, child) {
                     return Opacity(
                       opacity: 0.4,
-                      child: TextField(
-                        controller: TextEditingController(text: operation),
-                        maxLines: 1,
-                        readOnly: true,
-                        textAlign: TextAlign.right,
-                        style: AppTextStyle.operator,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          isDense: true,
-                          contentPadding: EdgeInsets.zero,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        reverse: true,
+                        child: Text(
+                          operation,
+                          maxLines: 1,
+                          textAlign: TextAlign.right,
+                          style: AppTextStyle.operator,
                         ),
                       ),
                     );
