@@ -28,7 +28,8 @@ class HomeProvider extends ChangeNotifier {
         if (_operation.isNotEmpty &&
             RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
           int i = _operation.length - 1;
-          while (i >= 0 && RegExp(r'\d').hasMatch(_operation[i])) {
+          while (i >= 0 &&
+              (RegExp(r'\d').hasMatch(_operation[i]) || _operation[i] == ",")) {
             i--;
           }
           if (i > 0 && (_operation[i] == '+' || _operation[i] == '-')) {

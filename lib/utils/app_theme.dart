@@ -15,12 +15,6 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.lightButtonColor,
           foregroundColor: Colors.black,
-          textStyle: const TextStyle(
-            color: Colors.cyan,
-            fontFamily: 'WorkSans',
-            fontSize: 1.0,
-            fontWeight: FontWeight.w700,
-          ),
         ),
       ),
     );
