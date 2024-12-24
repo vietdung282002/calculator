@@ -11,59 +11,76 @@ class HomeProvider extends ChangeNotifier {
   String get operation => _operation;
 
   void updateOperation(String value) {
-    if (value == '=') {
-      calculate();
-    } else if (value == 'C') {
-      _operation = '';
-      _resultString = '';
-    } else if (value == 'DEL') {
-      if (_operation.isNotEmpty) {
-        _operation = _operation.substring(0, _operation.length - 1);
-      }
-    } else if (value == 'NEG') {
-      if (_operation.isNotEmpty &&
-          RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
+    switch (value) {
+      case '=':
+        calculate();
+        break;
+      case 'C':
+        _operation = '';
+        _resultString = '';
+        break;
+      case 'DEL':
+        if (_operation.isNotEmpty) {
+          _operation = _operation.substring(0, _operation.length - 1);
+        }
+        break;
+      case 'NEG':
+        if (_operation.isNotEmpty &&
+            RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
+          int i = _operation.length - 1;
+          while (i >= 0 && RegExp(r'\d').hasMatch(_operation[i])) {
+            i--;
+          }
+          if (i > 0 && (_operation[i] == '+' || _operation[i] == '-')) {
+            _operation = _operation.substring(0, i) +
+                (_operation[i] == '+' ? '-' : '+') +
+                _operation.substring(i + 1);
+          } else if (i == 0 && (_operation[i] == '+' || _operation[i] == '-')) {
+            _operation = _operation.substring(0, i) +
+                (_operation[i] == '+' ? '-' : '') +
+                _operation.substring(i + 1);
+          } else if (i < 0) {
+            _operation = '-$_operation';
+          }
+        }
+        break;
+      case '%':
+      case '÷':
+      case 'x':
+      case '+':
+      case '-':
+        if (_operation.isNotEmpty &&
+            (RegExp(r'\d').hasMatch(_operation[_operation.length - 1]) ||
+                _operation[_operation.length - 1] == '%')) {
+          _operation += value;
+        } else if (_operation.isNotEmpty &&
+            (_operation[_operation.length - 1] == '+' ||
+                _operation[_operation.length - 1] == '-' ||
+                _operation[_operation.length - 1] == 'x' ||
+                _operation[_operation.length - 1] == '÷')) {
+          _operation = _operation.substring(0, _operation.length - 1) + value;
+        }
+        break;
+      case '.':
+        if (_operation.isNotEmpty &&
+            RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
+          _operation += value;
+        }
+        break;
+      default:
+        _operation += value;
         int i = _operation.length - 1;
-        while (i >= 0 && RegExp(r'\d').hasMatch(_operation[i])) {
+        while (i >= 0 &&
+            (RegExp(r'\d|\.', unicode: true).hasMatch(_operation[i]) ||
+                _operation[i] == ',')) {
           i--;
         }
-        if (i >= 0 && (_operation[i] == '+' || _operation[i] == '-')) {
-          _operation = _operation.substring(0, i) +
-              (_operation[i] == '+' ? '-' : '+') +
-              _operation.substring(i + 1);
-        } else {
-          _operation = '-$_operation';
+        String numberString = _operation.substring(i + 1).replaceAll(',', '');
+        if (!numberString.contains('.')) {
+          String lastNumber = formartNumber(double.parse(numberString));
+          _operation = _operation.substring(0, i + 1) + lastNumber;
         }
-      }
-    } else if (value == '%') {
-      if (_operation.isNotEmpty &&
-          RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
-        _operation += value;
-      }
-    } else if (value == '÷' || value == 'x' || value == '+' || value == '-') {
-      if (_operation.isNotEmpty &&
-          (RegExp(r'\d').hasMatch(_operation[_operation.length - 1]) ||
-              _operation[_operation.length - 1] == '%')) {
-        _operation += value;
-      }
-    } else if (value == '.') {
-      if (_operation.isNotEmpty &&
-          RegExp(r'\d').hasMatch(_operation[_operation.length - 1])) {
-        _operation += value;
-      }
-    } else {
-      _operation += value;
-      int i = _operation.length - 1;
-      while (i >= 0 &&
-          (RegExp(r'\d|\.', unicode: true).hasMatch(_operation[i]) ||
-              _operation[i] == ',')) {
-        i--;
-      }
-      String numberString = _operation.substring(i + 1).replaceAll(',', '');
-      if (!numberString.contains('.')) {
-        String lastNumber = formartNumber(double.parse(numberString));
-        _operation = _operation.substring(0, i + 1) + lastNumber;
-      }
+        break;
     }
     notifyListeners();
   }
@@ -93,6 +110,15 @@ class HomeProvider extends ChangeNotifier {
 
   void calculate() {
     try {
+      if (_operation.isNotEmpty &&
+          (_operation[_operation.length - 1] == '+' ||
+              _operation[_operation.length - 1] == '-' ||
+              _operation[_operation.length - 1] == 'x' ||
+              _operation[_operation.length - 1] == '÷')) {
+        _result = 0;
+        _resultString = 'Error';
+        return;
+      }
       final result = _evaluateExpression(_operation);
       _result = result;
       _resultString = formartNumber(result);
