@@ -1,6 +1,7 @@
 # calculator
 
-A new Flutter project.
+Demo:
+![Demo](<screenshots/Simulator Screen Recording - iPhone 16 Pro - 2024-12-24 at 17.18.17.gif>)
 
 ## Getting Started
 
