@@ -82,6 +82,7 @@ class HomeProvider extends ChangeNotifier {
         }
         break;
     }
+    print(_operation);
     notifyListeners();
   }
 

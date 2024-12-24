@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         builder: (context, themeProvider, child) {
           _setSystemOverlayStyle(themeProvider.mode);
           return MaterialApp(
-            title: 'Flutter Demo',
             themeMode: themeProvider.mode,
             theme: AppTheme.lightTheme(),
             darkTheme: AppTheme.darkTheme(),

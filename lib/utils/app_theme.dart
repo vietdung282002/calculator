@@ -1,20 +1,26 @@
 import 'package:calculator/utils/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static ThemeData lightTheme() {
     final ThemeData base = ThemeData.light(useMaterial3: true);
     return base.copyWith(
       scaffoldBackgroundColor: AppColor.lightBackgroundColor,
-      textTheme: GoogleFonts.workSansTextTheme(base.textTheme).apply(
+      textTheme: base.textTheme.apply(
+        fontFamily: 'WorkSans',
         bodyColor: Colors.black,
         displayColor: Colors.black,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.lightButtonColor, // Set your desired color
-          foregroundColor: Colors.black, // Set text color for ElevatedButton
+          backgroundColor: AppColor.lightButtonColor,
+          foregroundColor: Colors.black,
+          textStyle: const TextStyle(
+            color: Colors.cyan,
+            fontFamily: 'WorkSans',
+            fontSize: 1.0,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
@@ -24,15 +30,15 @@ class AppTheme {
     final ThemeData base = ThemeData.dark(useMaterial3: true);
     return base.copyWith(
       scaffoldBackgroundColor: AppColor.darkBackgroundColor,
-      textTheme: GoogleFonts.workSansTextTheme(base.textTheme).apply(
-        bodyColor:
-            Colors.white, // Set default text color to white for dark theme
+      textTheme: base.textTheme.apply(
+        fontFamily: 'WorkSans',
+        bodyColor: Colors.white,
         displayColor: Colors.white,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.darkButtonColor, // Set your desired color
-          foregroundColor: Colors.white, // Set text color for ElevatedButton
+          backgroundColor: AppColor.darkButtonColor,
+          foregroundColor: Colors.white,
         ),
       ),
     );

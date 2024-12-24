@@ -41,8 +41,8 @@ class HomeScreen extends StatelessWidget {
                 Consumer<ThemeProvider>(
                   builder: (context, themeProvider, child) {
                     return ButtonWidget(
-                      width: (size.width - 40) / 4,
-                      height: (size.height - 40) / 10,
+                      width: (size.width - 30) / 4,
+                      height: (size.height - 30) / 10,
                       backgroundColor: ButtonData.getButtonColor(
                           ButtonData.buttons[i][j], themeProvider.mode),
                       onPressed: () {
@@ -77,12 +77,17 @@ class HomeScreen extends StatelessWidget {
                   builder: (context, operation, child) {
                     return Opacity(
                       opacity: 0.4,
-                      child: Text(
-                        operation,
+                      child: TextField(
+                        controller: TextEditingController(text: operation),
                         maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyle.operator,
+                        readOnly: true,
                         textAlign: TextAlign.right,
+                        style: AppTextStyle.operator,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
                       ),
                     );
                   },
@@ -94,11 +99,15 @@ class HomeScreen extends StatelessWidget {
                   selector: (context, homeProvider) =>
                       homeProvider.resultString,
                   builder: (context, result, child) {
-                    return Text(
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      result,
-                      style: AppTextStyle.result,
+                    return FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        result,
+                        maxLines: 1,
+                        textAlign: TextAlign.right,
+                        style: AppTextStyle.result,
+                      ),
                     );
                   },
                 ),
