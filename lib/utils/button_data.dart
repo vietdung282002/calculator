@@ -1,6 +1,7 @@
 import 'package:calculator/utils/app_color.dart';
 import 'package:calculator/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 enum ButtonType {
   function,
@@ -70,70 +71,74 @@ class ButtonData {
 
   static Widget getButtonChild(CalculatorButton button, ThemeMode mode) {
     switch (button.label) {
-      case "C":
-        return Text(
-          button.label,
-          style: AppTextStyle.buttonTextStyle,
-        );
       case "NEG":
-        if (mode == ThemeMode.light) {
-          return Image.asset(
-            "assets/light_neg.png",
-          );
-        } else {
-          return Image.asset(
-            "assets/dark_neg.png",
-          );
-        }
+        return SvgPicture.asset(
+          "assets/negative.svg",
+          colorFilter: ColorFilter.mode(
+            mode == ThemeMode.light ? Colors.black : Colors.white,
+            BlendMode.srcIn,
+          ),
+        );
       case "%":
-        if (mode == ThemeMode.light) {
-          return Image.asset(
-            "assets/light_percent.png",
-          );
-        } else {
-          return Image.asset(
-            "assets/dark_percent.png",
-          );
-        }
+        return SvgPicture.asset(
+          "assets/percentage.svg",
+          colorFilter: ColorFilter.mode(
+            mode == ThemeMode.light ? Colors.black : Colors.white,
+            BlendMode.srcIn,
+          ),
+        );
       case "÷":
-        return Image.asset(
-          "assets/divide.png",
+        return SvgPicture.asset(
+          "assets/divide.svg",
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         );
       case "x":
-        return Image.asset(
-          "assets/multiply.png",
+        return SvgPicture.asset(
+          "assets/multiply.svg",
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         );
       case "-":
-        return Image.asset(
-          "assets/minus.png",
+        return SvgPicture.asset(
+          "assets/minus.svg",
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         );
       case "+":
-        return Image.asset(
-          "assets/plus.png",
-        );
-      case ".":
-        return Text(
-          button.label,
-          style: AppTextStyle.buttonTextStyle,
+        return SvgPicture.asset(
+          "assets/plus.svg",
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         );
       case "DEL":
-        if (mode == ThemeMode.light) {
-          return Image.asset(
-            "assets/light_backspace.png",
-          );
-        } else {
-          return Image.asset(
-            "assets/dark_backspace.png",
-          );
-        }
+        return Icon(
+          Icons.backspace_outlined,
+          size: 24,
+          color: mode == ThemeMode.light ? Colors.black : Colors.white,
+        );
       case "=":
-        return Image.asset(
-          "assets/equal.png",
+        return SvgPicture.asset(
+          "assets/equal.svg",
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         );
       default:
         return Text(
           button.label,
-          style: AppTextStyle.buttonTextStyle,
+          style: mode == ThemeMode.light
+              ? AppTextStyle.buttonTextLightStyle
+              : AppTextStyle.buttonTextDarkStyle,
         );
     }
   }

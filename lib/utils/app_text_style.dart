@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  static const TextStyle buttonTextStyle = TextStyle(
+  static const TextStyle buttonTextLightStyle = TextStyle(
     fontSize: 26,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
+
+  static const TextStyle buttonTextDarkStyle = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
   );
 
   static TextStyle result = const TextStyle(
