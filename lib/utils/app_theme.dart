@@ -15,6 +15,9 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.lightButtonColor,
           foregroundColor: Colors.black,
+          elevation: 0.0,
+          shadowColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
         ),
       ),
     );
@@ -33,6 +36,9 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.darkButtonColor,
           foregroundColor: Colors.white,
+          elevation: 0.0,
+          shadowColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
         ),
       ),
     );
